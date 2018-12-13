@@ -78,7 +78,7 @@ public class TabFragment22 extends Fragment {
         call.enqueue(new Callback<KitaplarResponse>() {
             @Override
             public void onResponse(Call<KitaplarResponse> call, Response<KitaplarResponse> response) {
-                List<Kitaplar> kitaplarResponseList = response.body().getKitaplar();
+                final List<Kitaplar> kitaplarResponseList = response.body().getKitaplar();
 
                 for (int i=0;i<kitaplarResponseList.size();i++){
 
@@ -92,13 +92,15 @@ public class TabFragment22 extends Fragment {
                     public void onItemClickListener(int pos) {
                         ++pos;
                         sharedPreferences.edit().putString("position", ""+pos).commit();
-
+                        String foto = kitaplarResponseList.get(--pos).getKitapResmi();
+                        sharedPreferences.edit().putString("foto",foto).commit();
                         Fragment fragment=null;
                         fragment = new listFragment();
                         loadFragment(fragment);
 
                     }
                 });
+
                 recyclerView.setAdapter(adapter);
 
 

@@ -89,6 +89,7 @@ public class listFragment extends Fragment {
 
                        sharedPreferences.edit().putString("partUrl", ""+kitapList.get(position).getKitapUrl()).commit();
 
+
                        sharedPreferences.edit().putString("partNo", ""+position).commit();
 
                        Fragment fragment=null;

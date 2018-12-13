@@ -31,6 +31,9 @@ import com.projectxr.mehmetd.bulentbey.Fragments.TabFragment33;
 public class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener  {
 
     private VideoView baseVideo;
+    Uri uri;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +43,8 @@ public class BaseActivity extends AppCompatActivity implements BottomNavigationV
 
         baseVideo = findViewById(R.id.videoView2);
 
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.mainvideo);
+        uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.mainvideo);
 
-        try {
-
-            baseVideo.setVideoURI(uri);
-            baseVideo.start();
-            baseVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mediaPlayer) {
-                    mediaPlayer.setLooping(true);
-                }
-            });
-        }catch (Exception e){}
 
         loadFragment(new TabFragment22());
 
@@ -60,10 +52,24 @@ public class BaseActivity extends AppCompatActivity implements BottomNavigationV
                 findViewById(R.id.bottomNav);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
+        }
+        @Override
+    protected void onResume() {
+        super.onResume();
+        try {
 
+                baseVideo.setVideoURI(uri);
+                baseVideo.start();
+                baseVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        mediaPlayer.setLooping(true);
+                        mediaPlayer.setVolume(0f, 0f);
+                    }
+                });
+            }catch (Exception e){}
 
-
-    }
+        }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
