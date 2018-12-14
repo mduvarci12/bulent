@@ -46,7 +46,7 @@ public class BaseActivity extends AppCompatActivity implements BottomNavigationV
         uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.mainvideo);
 
 
-        loadFragment(new TabFragment22());
+        loadFragment(new TabFragment11());
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.bottomNav);

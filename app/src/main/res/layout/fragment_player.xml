@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.PlayerFragment"
-    android:layout_margin="25dp">
+    android:layout_margin="50dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,10 +17,12 @@
         <ImageView
             android:id="@+id/kitapKapak"
             android:layout_width="181dp"
-            android:layout_height="242dp"
+            android:layout_height="0dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/saniyesi"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -59,37 +61,42 @@
         <SeekBar
             android:id="@+id/seekBar"
             android:layout_width="173dp"
-            android:layout_height="0dp"
+            android:layout_height="16dp"
 
-            android:layout_marginBottom="110dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="137dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/partAdi" />
+            app:layout_constraintTop_toBottomOf="@+id/saniyesi" />
 
         <TextView
             android:id="@+id/saniyesi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:textStyle="bold"
-            android:text="TextView"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="18dp"
+            android:text="00:00"
             android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/seekBar"
-            app:layout_constraintStart_toStartOf="@+id/seekBar" />
+            app:layout_constraintEnd_toStartOf="@+id/toplamSaniyesi"
+            app:layout_constraintStart_toStartOf="@+id/kitapKapak"
+            app:layout_constraintTop_toBottomOf="@+id/kitapKapak" />
 
         <TextView
             android:id="@+id/toplamSaniyesi"
             android:layout_width="wrap_content"
-            android:textStyle="bold"
-            android:textSize="18sp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/seekBar"
-            app:layout_constraintEnd_toEndOf="@+id/seekBar" />
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/kitapKapak"
+            app:layout_constraintTop_toBottomOf="@+id/kitapKapak" />
 
 
     </android.support.constraint.ConstraintLayout>

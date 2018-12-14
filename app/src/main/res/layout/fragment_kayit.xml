@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.KayitFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+  <EditText
+      android:id="@+id/isim"
+      android:padding="0dp"
+      android:layout_margin="10dp"
+      android:background="@drawable/roundedcorners"
+      android:layout_width="200dp"
+      android:hint="isim"
+      android:textAlignment="center"
+      android:layout_height="30dp" />
+    <EditText
+        android:id="@+id/soyisim"
+        android:textAlignment="center"
+        android:padding="0dp"
+        android:hint="Soyisim"
+        android:layout_margin="10dp"
+        android:background="@drawable/roundedcorners"
+        android:layout_width="200dp"
+        android:layout_height="30dp"/>
+    <EditText
+        android:id="@+id/kullanıcıAdı"
+        android:textAlignment="center"
+        android:padding="0dp"
+        android:hint="Kullanıcı Adı"
+        android:layout_margin="10dp"
+        android:background="@drawable/roundedcorners"
+        android:layout_width="200dp"
+        android:layout_height="30dp" />
+        <EditText
+            android:id="@+id/eposta"
+        android:textAlignment="center"
+        android:padding="0dp"
+        android:hint="E-posta Adresi"
+        android:layout_margin="10dp"
+        android:background="@drawable/roundedcorners"
+        android:layout_width="200dp"
+        android:layout_height="30dp" />
+    <EditText
+        android:id="@+id/telefon"
+        android:hint="Telefon Numarası"
+        android:textAlignment="center"
+        android:padding="0dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/roundedcorners"
+        android:layout_width="200dp"
+        android:layout_height="30dp" />
+    <EditText
+        android:id="@+id/sifre"
+        android:hint="şifre"
+        android:textAlignment="center"
+        android:padding="0dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/roundedcorners"
+        android:layout_width="200dp"
+        android:layout_height="30dp" />
+
+
+        <Button
+            android:id="@+id/uyeolButton"
+            android:onClick="kayitOL"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+           android:padding="0dp"
+            android:background="@drawable/roundedcorners"
+            android:text="Üye Ol" />
+</LinearLayout>
+</FrameLayout>
