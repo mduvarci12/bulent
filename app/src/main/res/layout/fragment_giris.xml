@@ -31,7 +31,6 @@
             android:text="afoafoafo1"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary" />
-
         <Button
             android:id="@+id/Loginbutton"
             android:layout_width="wrap_content"
@@ -40,12 +39,11 @@
             android:background="#fff"
             android:bottomLeftRadius="10dp"
             android:bottomRightRadius="20dp"
-            android:onClick="LoginMethod"
+            android:onClick="LoginMethod3"
             android:text="@string/login_button"
             android:textColor="#000"
             android:topLeftRadius="10dp"
             android:topRightRadius="10dp" />
-
 
     </LinearLayout>
 

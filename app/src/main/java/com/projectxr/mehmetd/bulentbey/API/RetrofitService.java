@@ -5,6 +5,7 @@ package com.projectxr.mehmetd.bulentbey.API;
 import com.projectxr.mehmetd.bulentbey.Models.KitaplarResponse;
 import com.projectxr.mehmetd.bulentbey.Models.LoginResponse;
 import com.projectxr.mehmetd.bulentbey.Models.PartResponse;
+import com.projectxr.mehmetd.bulentbey.Models.ProfileResponse;
 import com.projectxr.mehmetd.bulentbey.Models.RegisterResponse;
 
 
@@ -47,6 +48,12 @@ public interface RetrofitService {
     @POST("kitap/get_kitaplar")
     Call<PartResponse> partGetir(
             @Field("id") String id,
+            @Header("Authorization") String Authorization
+    );
+
+
+    @GET("users/profile")
+    Call<ProfileResponse> profilCall(
             @Header("Authorization") String Authorization
     );
 

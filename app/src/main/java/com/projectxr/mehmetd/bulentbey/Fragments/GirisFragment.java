@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.projectxr.mehmetd.bulentbey.API.RetrofitClient;
@@ -27,34 +28,45 @@ public class GirisFragment extends Fragment {
 
  EditText idd,password;
     SharedPreferences sharedPreferences;
-
+    String id, password2;
+    Button girisYap;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getActivity().getSharedPreferences("com.projectxr.mehmetd", Context.MODE_PRIVATE);
 
-        String kullanıcı =sharedPreferences.getString("oauth_key", "kullanıcı");
-
-        if (!kullanıcı.equals("kullanıcı"))
+        String kullanici =sharedPreferences.getString("oauth_key", "kullanıcı");
+/*
+        if (!kullanici.equals("kullanıcı"))
         {
-            startActivity(new Intent(getActivity(),BaseActivity.class));
+           startActivity(new Intent(getActivity(),BaseActivity.class));
 
         }
-
-
-
+*/
         }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_giris, container, false);
+        View view = inflater.inflate(R.layout.fragment_giris, container, false);
+        idd=view.findViewById(R.id.id);
+        password=view.findViewById(R.id.password);
+
+        girisYap = view.findViewById(R.id.Loginbutton);
+        girisYap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
+
+        return view;
     }
 
     public void login() {
-        String id = idd.getText().toString().trim();
-        String password2=password.getText().toString().trim();
+        id = idd.getText().toString().trim();
+     password2=password.getText().toString().trim();
 
         RetrofitService retrofitService= RetrofitClient.getRetrofitInstance().create(RetrofitService.class);
         Call<LoginResponse> call =retrofitService.login(id,password2);
@@ -63,6 +75,7 @@ public class GirisFragment extends Fragment {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
                 startActivity(new Intent(getActivity(),BaseActivity.class));
+
 
                 sharedPreferences.edit().putString("oauth_key", response.body().getKey().toString()).commit();
             }
@@ -78,8 +91,5 @@ public class GirisFragment extends Fragment {
 
     }
 
-    public void LoginMethod(View view) {
-        login();
-    }
 
 }

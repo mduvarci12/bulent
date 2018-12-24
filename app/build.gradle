@@ -1,10 +1,32 @@
 apply plugin: 'com.android.application'
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/'}
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.11.0, 0.99.99]'
+    }
+}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
+repositories {
+    maven { url 'https://maven.google.com' }
+}
+apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.projectxr.mehmetd.bulentbey"
-        minSdkVersion 23
+        android {
+            defaultConfig {
+                manifestPlaceholders = [
+                        onesignal_app_id: '2ea3f9e9-d936-40b7-91f5-ebb392138eee',
+                        // Project number pulled from dashboard, local value is ignored.
+                        onesignal_google_project_number: 'REMOTE'
+                ]
+            }
+        }
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -17,9 +39,11 @@ android {
         }
     }
 }
-
 dependencies {
+
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:support-v4:28.0.0'
@@ -33,4 +57,9 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.mixpanel.android:mixpanel-android:5.+'
+
+    implementation 'com.onesignal:OneSignal:[3.9.1, 3.99.99]'
+
+
 }

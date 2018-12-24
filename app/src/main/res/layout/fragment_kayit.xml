@@ -70,7 +70,7 @@
 
         <Button
             android:id="@+id/uyeolButton"
-            android:onClick="kayitOL"
+
             android:layout_width="200dp"
             android:layout_height="30dp"
            android:padding="0dp"

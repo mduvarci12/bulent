@@ -21,14 +21,20 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.projectxr.mehmetd.bulentbey.BaseActivity;
 import com.projectxr.mehmetd.bulentbey.R;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
 
 public class PlayerFragment extends Fragment {
+    MixpanelAPI mixpanel;
+
     SharedPreferences sharedPreferences;
     ImageButton playButton, pauseButton;
     TextView partName, sec, secTotal;
@@ -63,8 +69,11 @@ public class PlayerFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                               if (mp != null){ seekBar.setProgress(mp.getCurrentPosition());
-                                                sec.setText(formatTime( mp.getCurrentPosition()));}
+                               if (mp != null){
+                                   seekBar.setProgress(mp.getCurrentPosition());
+                                               sec.setText(formatTime( mp.getCurrentPosition()));
+
+                                   }
 
                             }
                         });
@@ -87,6 +96,8 @@ public class PlayerFragment extends Fragment {
         foto = sharedPreferences.getString("foto","bulunamadı");
         mp = new MediaPlayer();
 
+
+
         try {
             mp.setDataSource(partUrl);
             mp.prepare();
@@ -106,9 +117,11 @@ public class PlayerFragment extends Fragment {
         playButton =view.findViewById(R.id.playButton);
         pauseButton = view.findViewById(R.id.pauseButton);
         partName= view.findViewById(R.id.partAdi);
-        sec= view.findViewById(R.id.saniyesi);
+        sec= view.findViewById(R.id.deneme);
         secTotal= view.findViewById(R.id.toplamSaniyesi);
         bookImage =view.findViewById(R.id.kitapKapak);
+
+
         seekBar = view.findViewById(R.id.seekBar);
 
         int second,minutes;
@@ -123,15 +136,21 @@ public class PlayerFragment extends Fragment {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                     seekValue = progress;
+                  //  d.setText(seekValue);
+                Log.e("erkanmal","" + seekValue);
+                sec.setText(formatTime(seekValue));
+
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
+            //    sec.setText(seekValue*mp.getDuration());
 
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+
                 mp.seekTo(seekValue);
             }
         });
@@ -144,6 +163,15 @@ public class PlayerFragment extends Fragment {
 
                 mp.start();
                 seekBar.setMax(mp.getDuration());
+/*
+                try {    mixpanel.track("Çalınan Ses: "+ partUrl);
+                    JSONObject props = new JSONObject();
+                    props.put( "Android Ses", "ses calındı");
+                    mixpanel.track("Ses",props);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+*/
             }
         });
         pauseButton.setOnClickListener(new View.OnClickListener() {

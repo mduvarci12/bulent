@@ -5,9 +5,66 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.TabFragment11">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:gravity="center">
+
+      <ImageView
+          android:id="@+id/bgYazı"
+          android:layout_width="250dp"
+          android:layout_height="50dp"
+          android:layout_marginBottom="50dp"/>
+
+
+      <Button
+          android:id="@+id/profilButton"
+          android:layout_width="150dp"
+          android:layout_height="50dp"
+          android:background="@drawable/roundedcorners"
+          android:textAlignment="center"
+          android:text="Profil"
+          android:textSize="14sp"
+          />
+      <Button
+          android:layout_marginTop="20dp"
+          android:id="@+id/sesliKitapButton"
+          android:layout_width="150dp"
+          android:layout_height="50dp"
+          android:background="@drawable/roundedcorners"
+          android:textAlignment="center"
+          android:text="Sesli Kitap"
+          android:textSize="14sp"/>
+      <Button
+          android:layout_marginTop="20dp"
+          android:id="@+id/eKitapButton"
+          android:layout_width="150dp"
+          android:layout_height="50dp"
+          android:background="@drawable/roundedcorners"
+          android:textAlignment="center"
+          android:text="E-Kitap"
+          android:textSize="14sp"/>
+      <Button
+          android:layout_marginTop="20dp"
+          android:id="@+id/ARButton"
+          android:layout_width="150dp"
+          android:layout_height="50dp"
+          android:background="@drawable/roundedcorners"
+          android:textAlignment="center"
+          android:text="Artırılmış Gerçeklik"
+          android:textSize="14sp"/>
+      <Button
+          android:layout_marginTop="20dp"
+          android:id="@+id/iletisimButton"
+          android:layout_width="150dp"
+          android:layout_height="50dp"
+          android:background="@drawable/roundedcorners"
+          android:textAlignment="center"
+          android:text="İletişim"
+          android:textSize="14sp"/>
+
+
+  </LinearLayout>
 
 </FrameLayout>

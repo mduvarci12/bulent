@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         return ret;
     }
 
-    public void LoginMethod(View view) {
+    public void LoginMethod2(View view) {
 login();
         }
 

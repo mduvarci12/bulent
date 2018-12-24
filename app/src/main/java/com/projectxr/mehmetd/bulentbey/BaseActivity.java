@@ -26,6 +26,7 @@ import android.widget.VideoView;
 import com.projectxr.mehmetd.bulentbey.Fragments.TabFragment11;
 import com.projectxr.mehmetd.bulentbey.Fragments.TabFragment22;
 import com.projectxr.mehmetd.bulentbey.Fragments.TabFragment33;
+import com.projectxr.mehmetd.bulentbey.Fragments.tab_fragment4;
 
 
 public class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener  {
@@ -80,8 +81,11 @@ public class BaseActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.dinleID:
                 fragment = new TabFragment22();
                 break;
-            case R.id.oku:
+            case R.id.iletisim:
                 fragment = new TabFragment33();
+                break;
+            case R.id.profile:
+                fragment = new tab_fragment4();
                 break;
         }
         return loadFragment(fragment);

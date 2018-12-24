@@ -54,20 +54,20 @@
                 android:hint="@string/password"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintBottom_toTopOf="@+id/Loginbutton"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/id" />
 
             <Button
-                android:id="@+id/Loginbutton"
+                android:id="@+id/LoginButtoneski"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
                 android:background="#fff"
                 android:bottomLeftRadius="10dp"
                 android:bottomRightRadius="20dp"
-                android:onClick="LoginMethod"
+                android:onClick="LoginMethod2"
                 android:text="@string/login_button"
                 android:textColor="#000"
                 android:topLeftRadius="10dp"
@@ -88,7 +88,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Loginbutton" />
+                 />
         </LinearLayout>
     </FrameLayout>
 
