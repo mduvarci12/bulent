@@ -1,6 +1,8 @@
 package com.projectxr.mehmetd.bulentbey;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
@@ -28,18 +30,13 @@ public class LauncherActivity extends AppCompatActivity {
     public void stopVideo(){
         baseVideo.stopPlayback();
     }
+    SharedPreferences sharedPreferences;
 
     public static String MIXPANEL_TOKEN;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
-
-        baseVideo = findViewById(R.id.videoView);
-       MIXPANEL_TOKEN = "e2748ec0752b9f135c25ed0ddfd4e5bd";
-        MixpanelAPI mixpanel = MixpanelAPI.getInstance(this, MIXPANEL_TOKEN);
-        uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.video);
-
         OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(false)
@@ -50,10 +47,30 @@ public class LauncherActivity extends AppCompatActivity {
             @Override
             public void idsAvailable(String userId, String registrationId) {
                 if (registrationId != null) {
-                //todo: userId gönder
+                    //todo: userId gönder
                 }
             }
         });
+        MIXPANEL_TOKEN = "e2748ec0752b9f135c25ed0ddfd4e5bd";
+        MixpanelAPI mixpanel = MixpanelAPI.getInstance(this, MIXPANEL_TOKEN);
+
+
+        sharedPreferences = getSharedPreferences("com.projectxr.mehmetd", Context.MODE_PRIVATE);
+        String kullanici =sharedPreferences.getString("oauth_key", "kullanıcı");
+
+        if (!kullanici.equals("kullanıcı"))
+        {
+            startActivity(new Intent(LauncherActivity.this,BaseActivity.class));
+
+        }
+
+
+
+        baseVideo = findViewById(R.id.videoView);
+
+        uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.video);
+
+
 
     }
 

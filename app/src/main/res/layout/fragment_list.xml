@@ -4,26 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.listFragment">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:padding="40dp">
 
-    <ListView
-        android:id="@+id/sesList"
-        style="@style/Widget.AppCompat.ListView"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:padding="25dp">
 
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        <ListView
+            android:id="@+id/sesList"
+            style="@style/Widget.AppCompat.ListView"
+            android:layout_width="358dp"
+            android:layout_height="368dp"
 
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/roundedcorners"
-        android:longClickable="true">
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
 
-    </ListView>
-</RelativeLayout>
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="1dp"
+            android:background="@drawable/roundedcorners"
+            android:longClickable="true">
+
+        </ListView>
+
+        <ImageButton
+            android:id="@+id/purchImage"
+            android:layout_width="wrap_content"
+            android:layout_height="114dp"
+            android:layout_below="@+id/sesList"
+            android:layout_alignStart="@+id/sesList"
+            android:layout_alignEnd="@+id/sesList"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:src="@drawable/purchaseimage" />
+    </RelativeLayout>
 
 </FrameLayout>

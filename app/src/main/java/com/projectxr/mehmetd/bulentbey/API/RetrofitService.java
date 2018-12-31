@@ -2,6 +2,7 @@ package com.projectxr.mehmetd.bulentbey.API;
 
 
 
+import com.projectxr.mehmetd.bulentbey.Models.BuyResponse;
 import com.projectxr.mehmetd.bulentbey.Models.KitaplarResponse;
 import com.projectxr.mehmetd.bulentbey.Models.LoginResponse;
 import com.projectxr.mehmetd.bulentbey.Models.PartResponse;
@@ -56,6 +57,12 @@ public interface RetrofitService {
     Call<ProfileResponse> profilCall(
             @Header("Authorization") String Authorization
     );
+
+    @GET("users/premium")
+    Call <BuyResponse> checkCall(
+            @Header("Authorization") String Authorization
+    );
+
 
 
 }

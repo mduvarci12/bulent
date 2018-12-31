@@ -14,13 +14,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.projectxr.mehmetd.bulentbey.API.RetrofitClient;
 import com.projectxr.mehmetd.bulentbey.API.RetrofitService;
+import com.projectxr.mehmetd.bulentbey.BuyActivity;
 import com.projectxr.mehmetd.bulentbey.Models.Kitap;
 import com.projectxr.mehmetd.bulentbey.Models.PartResponse;
+import com.projectxr.mehmetd.bulentbey.Models.ProfileResponse;
 import com.projectxr.mehmetd.bulentbey.R;
 
 import java.util.List;
@@ -32,6 +36,7 @@ import retrofit2.Response;
 
 public class listFragment extends Fragment {
 
+ImageButton buymore;
     String oauthKey;
     SharedPreferences sharedPreferences;
     String pos;
@@ -48,8 +53,20 @@ public class listFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         listView=getActivity().findViewById(R.id.sesList);
-        return inflater.inflate(R.layout.fragment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
+        buymore =view.findViewById(R.id.purchImage);
+        buymore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(getActivity(), BuyActivity.class);
+                startActivity(i);
 
+            }
+        });
+        bolumGetir(pos,oauthKey);
+
+
+return view;
 
 
     }
@@ -58,14 +75,38 @@ public class listFragment extends Fragment {
     @Override
     public void  onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         listView=getActivity().findViewById(R.id.sesList);
         sharedPreferences = this.getActivity().getSharedPreferences("com.projectxr.mehmetd", Context.MODE_PRIVATE);
         pos = sharedPreferences.getString("position","bulunamadı");
 
         oauthKey = "bearer " + sharedPreferences.getString("oauth_key", "bulunamadı");
 
-        bolumGetir(pos,oauthKey);
-        }
+
+        RetrofitService retrofitService = RetrofitClient.getRetrofitInstance().create(RetrofitService.class);
+        Call<ProfileResponse> call = retrofitService.profilCall(oauthKey);
+        call.enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (response.body().getUserType().equals("1"))
+              buymore.setVisibility(View.INVISIBLE);
+
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+
+            }
+        });
+
+
+    }
+
+
+
+
+
 
     private void bolumGetir(String i,String bearer) {
 

@@ -37,13 +37,13 @@ public class GirisFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences("com.projectxr.mehmetd", Context.MODE_PRIVATE);
 
         String kullanici =sharedPreferences.getString("oauth_key", "kullanıcı");
-/*
+
         if (!kullanici.equals("kullanıcı"))
         {
            startActivity(new Intent(getActivity(),BaseActivity.class));
 
         }
-*/
+
         }
 
     @Override
@@ -67,6 +67,24 @@ public class GirisFragment extends Fragment {
     public void login() {
         id = idd.getText().toString().trim();
      password2=password.getText().toString().trim();
+        if (id.isEmpty()) {
+            idd.setError("Kullanıcı adı giriniz");
+            idd.requestFocus();
+            return;
+        }
+
+        if (password2.isEmpty()) {
+            password.setError("Şifrenizi Giriniz");
+            password.requestFocus();
+            return;
+        }
+
+        if (password2.length() < 4) {
+            password.setError("Şifreniz en az altı karakter uzunluğunda olmalıdır");
+            password.requestFocus();
+            return;
+        }
+
 
         RetrofitService retrofitService= RetrofitClient.getRetrofitInstance().create(RetrofitService.class);
         Call<LoginResponse> call =retrofitService.login(id,password2);
