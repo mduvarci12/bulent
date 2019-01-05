@@ -4,20 +4,23 @@
     <item
     android:id="@+id/profil"
     android:enabled="true"
-    android:title="@string/ProfilNav"
+    android:title="Menu"
+        android:icon="@drawable/home"
     app:showAsAction="always" />
 <item android:id="@+id/dinleID"
     android:title="@string/dinleNav"
-    app:showAsAction="always" />
+    android:icon="@drawable/literature"
+    app:showAsAction="always"
+    />
     <item
-
+        android:icon="@drawable/sms"
         android:id="@+id/iletisim"
         android:enabled="true"
         android:title="İletişim"
         app:showAsAction="always" />
 
     <item
-
+android:icon="@drawable/user"
         android:id="@+id/profile"
         android:enabled="true"
         android:title="Profil"

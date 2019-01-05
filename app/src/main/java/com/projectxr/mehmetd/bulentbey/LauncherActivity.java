@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
@@ -26,6 +27,7 @@ import com.projectxr.mehmetd.bulentbey.Fragments.KayitFragment;
 public class LauncherActivity extends AppCompatActivity {
 
     public VideoView baseVideo;
+    ImageView imageView;
     Uri uri;
     public void stopVideo(){
         baseVideo.stopPlayback();
@@ -37,6 +39,10 @@ public class LauncherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+
+        imageView=findViewById(R.id.bgimage);
+
+
         OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(false)

@@ -1,6 +1,7 @@
 package com.projectxr.mehmetd.bulentbey.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,10 +9,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.projectxr.mehmetd.bulentbey.API.RetrofitClient;
 import com.projectxr.mehmetd.bulentbey.API.RetrofitService;
+import com.projectxr.mehmetd.bulentbey.LauncherActivity;
 import com.projectxr.mehmetd.bulentbey.Models.ProfileResponse;
 import com.projectxr.mehmetd.bulentbey.R;
 
@@ -24,6 +27,7 @@ public class tab_fragment4 extends Fragment {
 
     SharedPreferences sharedPreferences;
     String oauthKey;
+    Button b;
 
     TextView adText,epostaText,kullaniciText;
     String ad,eposta,text;
@@ -53,6 +57,15 @@ public class tab_fragment4 extends Fragment {
         adText = view.findViewById(R.id.kullanıcıAdıText);
         epostaText = view.findViewById(R.id.EpostaText);
         kullaniciText = view.findViewById(R.id.KullanıcıTuruText);
+        b = view.findViewById(R.id.logoutButton);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            sharedPreferences.edit().remove("oauth_key").commit();
+                Intent i = new Intent(getActivity(), LauncherActivity.class);
+                startActivity(i);
+            }
+        });
 
         RetrofitService retrofitService = RetrofitClient.getRetrofitInstance().create(RetrofitService.class);
         Call<ProfileResponse> call = retrofitService.profilCall(oauthKey);
