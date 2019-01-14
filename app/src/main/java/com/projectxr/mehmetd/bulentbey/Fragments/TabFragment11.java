@@ -2,6 +2,8 @@ package com.projectxr.mehmetd.bulentbey.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,18 +30,20 @@ public class TabFragment11 extends Fragment implements View.OnClickListener {
 
         prfl= view.findViewById(R.id.profilButton);
         sslktp= view.findViewById(R.id.sesliKitapButton);
-        ektp= view.findViewById(R.id.eKitapButton);
-        ar= view.findViewById(R.id.ARButton);
+       // ektp= view.findViewById(R.id.eKitapButton);
+       // ar= view.findViewById(R.id.ARButton);
         iltsm= view.findViewById(R.id.iletisimButton);
 
 
         prfl.setOnClickListener(this);
         sslktp.setOnClickListener(this);
-        ektp.setOnClickListener(this);
-        ar.setOnClickListener(this);
+      //  ektp.setOnClickListener(this);
+      //  ar.setOnClickListener(this);
         iltsm.setOnClickListener(this);
 
         return view;
+
+
     }
 
     @Override
@@ -48,16 +52,29 @@ public class TabFragment11 extends Fragment implements View.OnClickListener {
 
         switch (v.getId()){
             case R.id.profilButton:
-                loadFragment(new tab_fragment4()); break;
+                ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+                if (!(networkInfo != null && networkInfo.isConnected() ))
+                {
+                    Toast.makeText(getActivity(),"Internet bağlantınızı kontrol edin",Toast.LENGTH_LONG).show();
+                }
+                loadFragment(new tab_fragment4());
+
+
+                break;
             case R.id.sesliKitapButton:
-                loadFragment(new TabFragment22()); break;
-            case R.id.eKitapButton:
+                loadFragment(new TabFragment22());
+
+                break;
+      /*      case R.id.eKitapButton:
                 Toast.makeText(getActivity().getApplicationContext(), "Ülkenizde kullanıma uygun değildir.",Toast.LENGTH_LONG).show();
                 break;
             case R.id.ARButton:
                 Toast.makeText(getActivity().getApplicationContext(), "Yakında hizmetinizde olacaktır.",Toast.LENGTH_LONG).show();
-                break;
+                break;*/
             case R.id.iletisimButton:
+
                 loadFragment(new TabFragment33());
                 break;
 

@@ -29,6 +29,7 @@
             android:layout_height="50dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/roundedcorners"
+            android:inputType="textPassword"
             android:hint="Parola"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary" />
@@ -40,9 +41,8 @@
             android:layout_marginBottom="40dp"
             android:background="#fff"
             android:bottomLeftRadius="10dp"
-
             android:bottomRightRadius="20dp"
-            android:onClick="LoginMethod3"
+            android:textAllCaps="false"
             android:text="@string/login_button"
             android:textColor="#000"
             android:topLeftRadius="10dp"

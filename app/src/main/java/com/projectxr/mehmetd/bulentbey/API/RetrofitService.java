@@ -5,6 +5,7 @@ package com.projectxr.mehmetd.bulentbey.API;
 import com.projectxr.mehmetd.bulentbey.Models.BuyResponse;
 import com.projectxr.mehmetd.bulentbey.Models.KitaplarResponse;
 import com.projectxr.mehmetd.bulentbey.Models.LoginResponse;
+import com.projectxr.mehmetd.bulentbey.Models.MessageResponse;
 import com.projectxr.mehmetd.bulentbey.Models.PartResponse;
 import com.projectxr.mehmetd.bulentbey.Models.ProfileResponse;
 import com.projectxr.mehmetd.bulentbey.Models.RegisterResponse;
@@ -62,6 +63,16 @@ public interface RetrofitService {
     Call <BuyResponse> checkCall(
             @Header("Authorization") String Authorization
     );
+    @FormUrlEncoded
+    @POST("ticket_gonder")
+    Call<MessageResponse> msgSend(
+            @Header("Authorization") String Authorization,
+            @Field("message") String mesaj,
+            @Field("name") String name,
+            @Field("phone") String phone,
+            @Field("mail") String mail
+    );
+
 
 
 

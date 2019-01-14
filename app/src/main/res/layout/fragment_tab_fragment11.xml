@@ -3,7 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.TabFragment11">
+
+    <ImageView
+        android:id="@+id/bgimage"
+        android:layout_width="263dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="108dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitXY"
+        android:src="@drawable/bgardiyanoglu"
+        app:layout_constraintBottom_toBottomOf="@+id/videoView"
+        app:layout_constraintBottom_toTopOf="@+id/girisYap"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
   <LinearLayout
       android:layout_width="match_parent"
@@ -11,11 +29,6 @@
       android:orientation="vertical"
       android:gravity="center">
 
-      <ImageView
-          android:id="@+id/bgYazı"
-          android:layout_width="250dp"
-          android:layout_height="50dp"
-          android:layout_marginBottom="50dp"/>
 
 
       <Button
@@ -36,24 +49,8 @@
           android:textAlignment="center"
           android:text="Sesli Kitap"
           android:textSize="14sp"/>
-      <Button
-          android:layout_marginTop="20dp"
-          android:id="@+id/eKitapButton"
-          android:layout_width="150dp"
-          android:layout_height="50dp"
-          android:background="@drawable/roundedcorners"
-          android:textAlignment="center"
-          android:text="E-Kitap"
-          android:textSize="14sp"/>
-      <Button
-          android:layout_marginTop="20dp"
-          android:id="@+id/ARButton"
-          android:layout_width="150dp"
-          android:layout_height="50dp"
-          android:background="@drawable/roundedcorners"
-          android:textAlignment="center"
-          android:text="Artırılmış Gerçeklik"
-          android:textSize="14sp"/>
+
+
       <Button
           android:layout_marginTop="20dp"
           android:id="@+id/iletisimButton"

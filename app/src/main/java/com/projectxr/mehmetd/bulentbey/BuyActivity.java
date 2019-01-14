@@ -47,22 +47,23 @@ public class BuyActivity extends AppCompatActivity  {
         bp = new BillingProcessor(this, LICENSE_KEY, MERCHANT_ID, new BillingProcessor.IBillingHandler() {
             @Override
             public void onProductPurchased( String productId, TransactionDetails details) {
-                showToast("onProductPurchased: " + productId);
+
+                checkSubsc();
 
             }
             @Override
             public void onBillingError(int errorCode, Throwable error) {
-                showToast("onBillingError: " + Integer.toString(errorCode));
+
             }
             @Override
             public void onBillingInitialized() {
-                showToast("onBillingInitialized");
+
                 readyToPurchase = true;
 
             }
             @Override
             public void onPurchaseHistoryRestored() {
-                showToast("onPurchaseHistoryRestored");
+
                 for(String sku : bp.listOwnedProducts())
                     Log.d(LOG_TAG, "Owned Managed Product: " + sku);
                 for(String sku : bp.listOwnedSubscriptions())
@@ -73,9 +74,12 @@ public class BuyActivity extends AppCompatActivity  {
     }
 
 
+
     @Override
     public void onDestroy() {
+        checkSubsc();
         if (bp != null)
+
             bp.release();
         super.onDestroy();
     }
@@ -86,28 +90,15 @@ public class BuyActivity extends AppCompatActivity  {
 
             case R.id.subscribeButton:
                 bp.subscribe(this,SUBSCRIPTION_ID);
+
                 checkSubsc();
 
                 break;
-            case R.id.updateSubscriptionsButton:
-                if (bp.loadOwnedPurchasesFromGoogle()) {
-                    showToast("Subscriptions updated.");
-                    checkSubsc();
 
-                }
-                break;
-            case R.id.subsDetailsButton:
-                SkuDetails subs = bp.getSubscriptionListingDetails(SUBSCRIPTION_ID);
-                showToast(subs != null ? subs.toString() : "Failed to load subscription details");
-                break;
 
-            default:
-                break;
         }
     }
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-    }
+
     public void checkSubsc() {
         if (bp.isSubscribed(SUBSCRIPTION_ID)) {
 

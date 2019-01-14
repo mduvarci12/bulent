@@ -13,47 +13,57 @@
         android:background="@drawable/roundedcorners">
 
         <TextView
-            android:layout_width="250dp"
+            android:layout_width="295dp"
             android:layout_height="40dp"
             android:text="@string/isimsoyisim"
-            android:textSize="18sp"
-            android:textAlignment="viewStart"/>
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/isimSoyisim"
-            android:layout_width="250dp"
+            android:layout_width="295dp"
             android:layout_height="wrap_content"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
+
         <TextView
-            android:layout_width="250dp"
+            android:layout_width="295dp"
             android:layout_height="40dp"
             android:text="Telefon Numarası"
-            android:textSize="18sp"
-            android:textAlignment="viewStart"/>
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
+
         <EditText
-            android:layout_width="250dp"
+            android:id="@+id/telno"
+            android:layout_width="295dp"
             android:layout_height="wrap_content"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
+
         <TextView
-            android:layout_width="250dp"
+            android:layout_width="284dp"
             android:layout_height="40dp"
             android:text="E-Posta Adresi"
             android:textAlignment="viewStart"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
+
         <EditText
-            android:layout_width="250dp"
+            android:id="@+id/mail"
+            android:layout_width="295dp"
             android:layout_height="40dp"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
+
         <TextView
-            android:layout_width="250dp"
+            android:layout_width="284dp"
             android:layout_height="40dp"
             android:text="Mesajınız"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
+
         <EditText
-            android:layout_width="250dp"
+            android:id="@+id/mesajım"
+            android:layout_width="284dp"
             android:layout_height="80dp"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
         <Button
+            android:id="@+id/yollaB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

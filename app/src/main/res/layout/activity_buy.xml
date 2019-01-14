@@ -6,56 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".BuyActivity">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-       >
 
-
-        <TextView
-            android:layout_marginTop="10dp"
+    <!--      <TextView
+            android:id="@+id/subscriptionIdTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/subscriptionIdTextView"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Subscriptions" />
+            android:layout_margin="10dp"
+            android:text=" Ödeme, satın alımın doğrulanmasının ardından ücretlendirilecektir. Abonelik geçerli dönemin bitişinden en az 24 saat önce otomatik yenileme seçeneği kapatılmadığı sürece yenilenir. Yenileme ücreti geçerli dönemin bitiminden 24 saat önce hesabınıza ücretlendirilecek ve yenileme maliyeti belirtilecektir. Abonelikler kullanıcı tarafından yönetilebilir ve otomatik yenileme, satın alımın ardından kullanıcının Hesap Ayarlarına giderek kapatılabilir."
+            android:textAppearance="?android:attr/textAppearanceLarge" />-->
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="0dp"
+        android:layout_height="265dp"
+        app:layout_constraintBottom_toTopOf="@+id/subscribeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="254dp"
+            android:layout_margin="5dp"
+            android:text="      Ödeme, satın alımın doğrulanmasının ardından Google Hesabına ücretlendirilecektir. Abonelik geçerli dönemin bitişinden en az 24 saat önce otomatik yenileme seçeneği kapatılmadığı sürece yenilenir. Yenileme ücreti geçerli dönemin bitiminden 24 saat önce hesabınıza ücretlendirilecek ve yenileme maliyeti belirtilecektir. Abonelikler kullanıcı tarafından yönetilebilir ve otomatik yenileme, satın alımın ardından kullanıcının Hesap Ayarlarına giderek kapatılabilir."
+            android:textSize="18dp" />
+    </FrameLayout>
 
 
+    <Button
+        android:id="@+id/subscribeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="137dp"
+        android:layout_marginBottom="221dp"
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+        android:onClick="onClick"
+        android:text="Abone Ol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Subscribe"
-                android:id="@+id/subscribeButton"
-                android:onClick="onClick"
-                android:layout_marginRight="20dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:text="Update"
-                android:onClick="onClick"
-                android:id="@+id/updateSubscriptionsButton" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Details"
-                android:onClick="onClick"
-                android:id="@+id/subsDetailsButton"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -22,12 +23,15 @@ import com.onesignal.OSSubscriptionStateChanges;
 import com.onesignal.OneSignal;
 import com.projectxr.mehmetd.bulentbey.Fragments.GirisFragment;
 import com.projectxr.mehmetd.bulentbey.Fragments.KayitFragment;
+import com.squareup.picasso.Picasso;
 
 
 public class LauncherActivity extends AppCompatActivity {
 
+
     public VideoView baseVideo;
     ImageView imageView;
+
     Uri uri;
     public void stopVideo(){
         baseVideo.stopPlayback();
@@ -40,20 +44,19 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
-        imageView=findViewById(R.id.bgimage);
-
-
         OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(false)
                 .init();
+
+imageView=findViewById(R.id.bgimage);
+Picasso.get().load(R.drawable.bgardiyanoglu).into(imageView);
 
 
         OneSignal.idsAvailable(new OneSignal.IdsAvailableHandler() {
             @Override
             public void idsAvailable(String userId, String registrationId) {
                 if (registrationId != null) {
-                    //todo: userId gönder
                 }
             }
         });
@@ -86,6 +89,7 @@ public class LauncherActivity extends AppCompatActivity {
        try {
             baseVideo.setVideoURI(uri);
             baseVideo.start();
+
             baseVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
@@ -102,6 +106,8 @@ public class LauncherActivity extends AppCompatActivity {
     public void girisYap(View view) {
         View b = findViewById(R.id.girisYap);
         View b2 = findViewById(R.id.kayitOl);
+        View image = findViewById(R.id.bgimage);
+        image.setVisibility(View.GONE);
         b.setVisibility(View.GONE);
         b2.setVisibility(View.GONE);
         Fragment fragment = null;
@@ -127,6 +133,8 @@ public class LauncherActivity extends AppCompatActivity {
         View b2 = findViewById(R.id.kayitOl);
         b.setVisibility(View.GONE);
         b2.setVisibility(View.GONE);
+        View image = findViewById(R.id.bgimage);
+        image.setVisibility(View.GONE);
         Fragment fragment = null;
         fragment = new KayitFragment();
         loadFragment(fragment);
@@ -140,6 +148,39 @@ public class LauncherActivity extends AppCompatActivity {
                     .show();
             // get player ID TODO:     playerID = stateChanges.getTo().getUserId();
         }
+    }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        View view = getCurrentFocus();
+        boolean ret = super.dispatchTouchEvent(event);
+
+        if (view instanceof EditText) {
+            View w = getCurrentFocus();
+            int scrcoords[] = new int[2];
+            w.getLocationOnScreen(scrcoords);
+            float x = event.getRawX() + w.getLeft() - scrcoords[0];
+            float y = event.getRawY() + w.getTop() - scrcoords[1];
+
+            if (event.getAction() == MotionEvent.ACTION_UP
+                    && (x < w.getLeft() || x >= w.getRight()
+                    || y < w.getTop() || y > w.getBottom()) ) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getWindow().getCurrentFocus().getWindowToken(), 0);
+            }
+        }
+        return ret;
+    }
+
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode== KeyEvent.KEYCODE_BACK)
+        {
+            finish();
+            startActivity(getIntent());
+        }
+
+        return false;
+        // Disable back button..............
     }
 
 }

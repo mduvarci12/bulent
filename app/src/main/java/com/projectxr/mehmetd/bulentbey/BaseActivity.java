@@ -50,8 +50,7 @@ public class BaseActivity extends AppCompatActivity implements BottomNavigationV
 
         loadFragment(new TabFragment11());
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)
-                findViewById(R.id.bottomNav);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNav);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         }

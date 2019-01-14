@@ -55,6 +55,7 @@ ImageButton buymore;
         listView=getActivity().findViewById(R.id.sesList);
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         buymore =view.findViewById(R.id.purchImage);
+        bolumGetir(pos,oauthKey);
         buymore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +64,7 @@ ImageButton buymore;
 
             }
         });
-        bolumGetir(pos,oauthKey);
+
 
 
 return view;
@@ -89,8 +90,11 @@ return view;
         call.enqueue(new Callback<ProfileResponse>() {
             @Override
             public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
-                if (response.body().getUserType().equals("1"))
+                if (response.body().getUserType().equals("1")){
               buymore.setVisibility(View.INVISIBLE);
+
+                }
+
 
             }
 

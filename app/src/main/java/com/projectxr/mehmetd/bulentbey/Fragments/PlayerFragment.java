@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.projectxr.mehmetd.bulentbey.BaseActivity;
@@ -158,8 +161,18 @@ public class PlayerFragment extends Fragment {
         Picasso.get().load(foto).into(bookImage);
 
         playButton.setOnClickListener(new View.OnClickListener() {
+
+
+
             @Override
             public void onClick(View v) {
+                ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+                if (!(networkInfo != null && networkInfo.isConnected() ))
+                {
+                    Toast.makeText(getActivity(),"Internet bağlantınızı kontrol edin",Toast.LENGTH_LONG).show();
+                }
 
                 mp.start();
                 seekBar.setMax(mp.getDuration());

@@ -9,18 +9,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:padding="25dp">
+        android:padding="15dp">
 
         <ListView
             android:id="@+id/sesList"
             style="@style/Widget.AppCompat.ListView"
-            android:layout_width="358dp"
-            android:layout_height="368dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
 
-            android:layout_alignParentEnd="true"
             android:layout_marginEnd="1dp"
             android:background="@drawable/roundedcorners"
             android:longClickable="true">
@@ -30,14 +29,12 @@
         <ImageButton
             android:id="@+id/purchImage"
             android:layout_width="wrap_content"
-            android:layout_height="114dp"
-            android:layout_below="@+id/sesList"
-            android:layout_alignStart="@+id/sesList"
-            android:layout_alignEnd="@+id/sesList"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="0dp"
-            android:src="@drawable/purchaseimage" />
+            android:layout_height="295dp"
+            android:layout_marginTop="250dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="2dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/kampanya" />
     </RelativeLayout>
 
 </FrameLayout>

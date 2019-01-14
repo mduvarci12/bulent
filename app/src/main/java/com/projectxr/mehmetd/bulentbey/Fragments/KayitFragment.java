@@ -3,6 +3,8 @@ package com.projectxr.mehmetd.bulentbey.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projectxr.mehmetd.bulentbey.API.RetrofitClient;
 import com.projectxr.mehmetd.bulentbey.API.RetrofitService;
@@ -66,6 +69,14 @@ public class KayitFragment extends Fragment {
     }
 
     private void kayitOl() {
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (!(networkInfo != null && networkInfo.isConnected() ))
+        {
+            Toast.makeText(getActivity(),"Internet bağlantınızı kontrol edin",Toast.LENGTH_LONG).show();
+        }
 
 
         RetrofitService retrofitService = RetrofitClient.getRetrofitInstance().create(RetrofitService.class);

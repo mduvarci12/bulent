@@ -3,6 +3,8 @@ package com.projectxr.mehmetd.bulentbey.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.projectxr.mehmetd.bulentbey.API.RetrofitClient;
 import com.projectxr.mehmetd.bulentbey.API.RetrofitService;
@@ -46,6 +49,7 @@ public class GirisFragment extends Fragment {
 
         }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,6 +69,16 @@ public class GirisFragment extends Fragment {
     }
 
     public void login() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (!(networkInfo != null && networkInfo.isConnected() ))
+        {
+            Toast.makeText(getActivity(),"Internet bağlantınızı kontrol edin",Toast.LENGTH_LONG).show();
+        }
+
+
+
         id = idd.getText().toString().trim();
      password2=password.getText().toString().trim();
         if (id.isEmpty()) {
@@ -92,10 +106,17 @@ public class GirisFragment extends Fragment {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
-                startActivity(new Intent(getActivity(),BaseActivity.class));
 
-
+                if (response.body().getStatus().equals("success")){
+                    startActivity(new Intent(getActivity(),BaseActivity.class));
                 sharedPreferences.edit().putString("oauth_key", response.body().getKey().toString()).commit();
+                }
+                else if(response.body().getStatus().equals("error")){
+                    Toast.makeText(getActivity(),"Giriş Bilgilerinizi kontrol edin",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    getActivity().finish();
+                    startActivity(getActivity().getIntent());}
             }
 
             @Override
